@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>javascript clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="clock">
+    <div class="hour">
+        <div class="hr" id="hr"></div>
+    </div>
+    <div class="min">
+        <div class="mn" id="mn"></div>
+    </div>
+    <div class="sec">
+        <div class="sc" id="sc"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    const deg = 6;
+    const hr = document.querySelector("#hr");
+    const mn = document.querySelector("#mn");
+    const sc = document.querySelector("#sc");
+    function toTime() {
+        //获取当前时间
+        let day = new Date();
+        let iSec = day.getSeconds();
+        let iMin = day.getMinutes() + iSec / 60;
+        let iHour = day.getHours() + iMin / 60;
+        //根据此时的时间给指针赋值
+        sc.style.webkitTransform = 'rotate(' + (iSec * 6) + 'deg)';
+        mn.style.webkitTransform = 'rotate(' + (iMin * 6) + 'deg)';
+        hr.style.webkitTransform = 'rotate(' + (iHour * 30) + 'deg)';
+    }
+    //添加定时器,动起来
+    setInterval(toTime,1000);
+</script>
+</body>
+</html>
